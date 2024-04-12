@@ -1,0 +1,135 @@
+﻿<Window x:Class="WpfApp2.registr"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="Регистрация" Height="500" Width="600">
+    <Window.Resources>
+        <Style x:Key="btnRound" TargetType="Button">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style x:Key="btn2Round" TargetType="Button">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="25"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+
+        <Style x:Key="TextB" TargetType="TextBox">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"></Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55*"/>
+            <RowDefinition Height="379*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="59*"/>
+                <ColumnDefinition Width="141*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Perfect Teeth" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" FontWeight="Bold" FontFamily="Fedra Sans" Height="30" Width="154" Foreground="Black" ></TextBlock>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="49*"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Фамилия:" Margin="5" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Right"></TextBlock>
+                <TextBox Name="Famil" Grid.Column="1" VerticalAlignment="Center" Height="40" Style="{StaticResource TextB}"></TextBox>
+                
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Имя:" Margin="5" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Right"></TextBlock>
+                <TextBox Name="imya" Grid.Column="1" VerticalAlignment="Center" Height="40" Style="{StaticResource TextB}"></TextBox>
+
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Отчество:" Margin="5" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Right"></TextBlock>
+                <TextBox Name="patron" Grid.Column="1" VerticalAlignment="Center" Height="40" Style="{StaticResource TextB}"></TextBox>
+
+            </Grid>
+
+          
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Полис ОМС:" Margin="5" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Right"></TextBlock>
+                <TextBox Name="policee" Grid.Column="1" VerticalAlignment="Center" Height="40" Style="{StaticResource TextB}"></TextBox>
+
+            </Grid>
+
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Телефон:" Margin="5" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Right"></TextBlock>
+                <TextBox Name="phonee" Grid.Column="1" VerticalAlignment="Center" Height="40" Style="{StaticResource TextB}"></TextBox>
+
+
+            </Grid>
+
+            <Grid Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" Style="{StaticResource btnRound}" Height="40" Background="#2a5cdb" BorderBrush="Transparent" Content="Зарегистрироватся" Foreground="White" Name="registrs" Click="registrs_Click"></Button>
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</Window>

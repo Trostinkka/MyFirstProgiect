@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="859ae68831734a90813f94cf405915bc" Name="Diagram1">
+        <EntityTypeShape EntityType="KursovikModel1.Appointment" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovikModel1.EntranceEmployee" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovikModel1.ReceptionSchedule" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovikModel1.Registration" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovikModel1.Services" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovikModel1.ServicesChildren" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovikModel1.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="KursovikModel1.FK_ReceptionSchedule_EntranceEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="KursovikModel1.FK_ReceptionSchedule_Registration" ManuallyRouted="false" />
+        <AssociationConnector Association="KursovikModel1.FK_ReceptionSchedule_Services" ManuallyRouted="false" />
+        <AssociationConnector Association="KursovikModel1.FK_Services_ServicesChildren" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

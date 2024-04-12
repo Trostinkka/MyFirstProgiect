@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KursovikModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="EntranceEmployee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ReceptionSchedule" Relationship="Self.FK_ReceptionSchedule_EntranceEmployee" FromRole="EntranceEmployee" ToRole="ReceptionSchedule" />
+  </EntityType>
+  <EntityType Name="ReceptionSchedule">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+    <Property Name="OMC_policy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EntranceEmployee" Relationship="Self.FK_ReceptionSchedule_EntranceEmployee" FromRole="ReceptionSchedule" ToRole="EntranceEmployee" />
+    <NavigationProperty Name="Registration" Relationship="Self.FK_ReceptionSchedule_Registration" FromRole="ReceptionSchedule" ToRole="Registration" />
+    <NavigationProperty Name="Services" Relationship="Self.FK_ReceptionSchedule_Services" FromRole="ReceptionSchedule" ToRole="Services" />
+  </EntityType>
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+    <Property Name="OMC_policy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ReceptionSchedule" Relationship="Self.FK_ReceptionSchedule_Registration" FromRole="Registration" ToRole="ReceptionSchedule" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Cout" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ReceptionSchedule" Relationship="Self.FK_ReceptionSchedule_Services" FromRole="Services" ToRole="ReceptionSchedule" />
+    <NavigationProperty Name="ServicesChildren" Relationship="Self.FK_Services_ServicesChildren" FromRole="Services" ToRole="ServicesChildren" />
+  </EntityType>
+  <EntityType Name="ServicesChildren">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Cout" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Services" Relationship="Self.FK_Services_ServicesChildren" FromRole="ServicesChildren" ToRole="Services" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_ReceptionSchedule_EntranceEmployee">
+    <End Role="EntranceEmployee" Type="Self.EntranceEmployee" Multiplicity="1" />
+    <End Role="ReceptionSchedule" Type="Self.ReceptionSchedule" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="EntranceEmployee">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ReceptionSchedule">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReceptionSchedule_Registration">
+    <End Role="Registration" Type="Self.Registration" Multiplicity="1" />
+    <End Role="ReceptionSchedule" Type="Self.ReceptionSchedule" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Registration">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ReceptionSchedule">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReceptionSchedule_Services">
+    <End Role="Services" Type="Self.Services" Multiplicity="1" />
+    <End Role="ReceptionSchedule" Type="Self.ReceptionSchedule" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Services">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ReceptionSchedule">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Services_ServicesChildren">
+    <End Role="ServicesChildren" Type="Self.ServicesChildren" Multiplicity="1" />
+    <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ServicesChildren">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Services">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KursovikEntities5" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EntranceEmployee" EntityType="Self.EntranceEmployee" />
+    <EntitySet Name="ReceptionSchedule" EntityType="Self.ReceptionSchedule" />
+    <EntitySet Name="Registration" EntityType="Self.Registration" />
+    <EntitySet Name="Services" EntityType="Self.Services" />
+    <EntitySet Name="ServicesChildren" EntityType="Self.ServicesChildren" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_ReceptionSchedule_EntranceEmployee" Association="Self.FK_ReceptionSchedule_EntranceEmployee">
+      <End Role="EntranceEmployee" EntitySet="EntranceEmployee" />
+      <End Role="ReceptionSchedule" EntitySet="ReceptionSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReceptionSchedule_Registration" Association="Self.FK_ReceptionSchedule_Registration">
+      <End Role="Registration" EntitySet="Registration" />
+      <End Role="ReceptionSchedule" EntitySet="ReceptionSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReceptionSchedule_Services" Association="Self.FK_ReceptionSchedule_Services">
+      <End Role="Services" EntitySet="Services" />
+      <End Role="ReceptionSchedule" EntitySet="ReceptionSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Services_ServicesChildren" Association="Self.FK_Services_ServicesChildren">
+      <End Role="ServicesChildren" EntitySet="ServicesChildren" />
+      <End Role="Services" EntitySet="Services" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

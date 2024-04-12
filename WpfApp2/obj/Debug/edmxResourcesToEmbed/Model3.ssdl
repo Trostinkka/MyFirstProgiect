@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KursovikModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="EntranceEmployee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ReceptionSchedule">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Patronymic" Type="nvarchar(max)" />
+    <Property Name="DateOfBirth" Type="date" />
+    <Property Name="OMC_policy" Type="nvarchar(max)" />
+    <Property Name="Phone" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Patronymic" Type="nvarchar(max)" />
+    <Property Name="DateOfBirth" Type="date" />
+    <Property Name="OMC_policy" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Cout" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="ServicesChildren">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Cout" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_ReceptionSchedule_EntranceEmployee">
+    <End Role="EntranceEmployee" Type="Self.EntranceEmployee" Multiplicity="1" />
+    <End Role="ReceptionSchedule" Type="Self.ReceptionSchedule" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="EntranceEmployee">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ReceptionSchedule">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReceptionSchedule_Registration">
+    <End Role="Registration" Type="Self.Registration" Multiplicity="1" />
+    <End Role="ReceptionSchedule" Type="Self.ReceptionSchedule" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Registration">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ReceptionSchedule">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReceptionSchedule_Services">
+    <End Role="Services" Type="Self.Services" Multiplicity="1" />
+    <End Role="ReceptionSchedule" Type="Self.ReceptionSchedule" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Services">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ReceptionSchedule">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Services_ServicesChildren">
+    <End Role="ServicesChildren" Type="Self.ServicesChildren" Multiplicity="1" />
+    <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ServicesChildren">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Services">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KursovikModelStoreContainer">
+    <EntitySet Name="EntranceEmployee" EntityType="Self.EntranceEmployee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReceptionSchedule" EntityType="Self.ReceptionSchedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServicesChildren" EntityType="Self.ServicesChildren" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ReceptionSchedule_EntranceEmployee" Association="Self.FK_ReceptionSchedule_EntranceEmployee">
+      <End Role="EntranceEmployee" EntitySet="EntranceEmployee" />
+      <End Role="ReceptionSchedule" EntitySet="ReceptionSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReceptionSchedule_Registration" Association="Self.FK_ReceptionSchedule_Registration">
+      <End Role="Registration" EntitySet="Registration" />
+      <End Role="ReceptionSchedule" EntitySet="ReceptionSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReceptionSchedule_Services" Association="Self.FK_ReceptionSchedule_Services">
+      <End Role="Services" EntitySet="Services" />
+      <End Role="ReceptionSchedule" EntitySet="ReceptionSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Services_ServicesChildren" Association="Self.FK_Services_ServicesChildren">
+      <End Role="ServicesChildren" EntitySet="ServicesChildren" />
+      <End Role="Services" EntitySet="Services" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
